@@ -39,27 +39,22 @@ class Gameboard {
     this.carrier = {
       ship: new Ship(5),
       coordinates: [],
-      placed: false,
     };
     this.battleship = {
       ship: new Ship(4),
       coordinates: [],
-      placed: false,
     };
     this.cruiser = {
       ship: new Ship(3),
       coordinates: [],
-      placed: false,
     };
     this.submarine = {
       ship: new Ship(3),
       coordinates: [],
-      placed: false,
     };
     this.destroyer = {
       ship: new Ship(2),
       coordinates: [],
-      placed: false,
     };
     this.hits = [];
     this.misses = [];
@@ -106,7 +101,6 @@ class Gameboard {
     });
 
     this[shipType].coordinates = shipCoordinates;
-    this[shipType].placed = true;
     // update DOM for ship location
   }
 
@@ -120,8 +114,8 @@ class Gameboard {
           coordinate[1] === numberCoordinate
         ) {
           this.hits.push([letterCoordinate, numberCoordinate]);
-          this[ship].ship.hit();
           //   update DOM for hit
+          this[ship].ship.hit();
           return;
         }
       });
@@ -148,7 +142,7 @@ class Gameboard {
     let placedShips = 0;
 
     allShipTypes.forEach((shipType) => {
-      if (this[shipType].placed) {
+      if (this[shipType].coordinates.length > 0) {
         placedShips++;
       }
     });
@@ -168,6 +162,7 @@ class Gameboard {
     });
 
     return numberOfSunkenShips === numberOfPlacedShips;
+    // once game is fully implemented and players must start out with 5 ships, could reduce this logic to check if 5 ships are sunk
   }
 }
 

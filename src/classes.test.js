@@ -161,7 +161,7 @@ describe("gameboard class tests", () => {
       expect(gameboard.allShipsSunk()).toBeFalsy();
     });
 
-    test("reports false if all ships are sunk", () => {
+    test("reports true if all ships are sunk", () => {
       gameboard.receiveAttack("E", 3);
       expect(gameboard.allShipsSunk()).toBeTruthy();
     });
