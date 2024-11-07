@@ -17,4 +17,7 @@ playerTwo.gameboard.placeShip("C", 1, "horizontal", "cruiser");
 playerTwo.gameboard.placeShip("D", 1, "horizontal", "submarine");
 playerTwo.gameboard.placeShip("E", 1, "horizontal", "destroyer");
 
+playerOne.gameboard.receiveAttack("A", 7);
+playerOne.gameboard.receiveAttack("C", 2);
+
 DOM.renderBoard(playerOne, 1);

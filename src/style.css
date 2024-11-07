@@ -150,3 +150,39 @@ body {
   min-height: 30px;
   border: 1px solid black;
 }
+
+.carrier {
+  background-color: rgba(0, 0, 0, 0.747);
+}
+
+.battleship {
+  background-color: rgba(0, 235, 12, 0.747);
+}
+
+.cruiser {
+  background-color: rgba(199, 0, 0, 0.747);
+}
+
+.submarine {
+  background-color: rgba(17, 0, 173, 0.747);
+}
+
+.destroyer {
+  background-color: rgba(206, 168, 0, 0.747);
+}
+
+.hit {
+  position: relative;
+}
+
+.hit::after {
+  content: "X";
+}
+
+.miss {
+  position: relative;
+}
+
+.miss::after {
+  content: "O";
+}

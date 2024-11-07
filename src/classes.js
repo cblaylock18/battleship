@@ -101,11 +101,11 @@ class Gameboard {
     });
 
     this[shipType].coordinates = shipCoordinates;
-    // update DOM for ship location
   }
 
   receiveAttack(letterCoordinate, numberCoordinate) {
     const shipTypes = this.listShipTypes();
+    let hit = false;
 
     shipTypes.forEach((ship) => {
       this[ship].coordinates.forEach((coordinate) => {
@@ -114,23 +114,42 @@ class Gameboard {
           coordinate[1] === numberCoordinate
         ) {
           this.hits.push([letterCoordinate, numberCoordinate]);
-          //   update DOM for hit
           this[ship].ship.hit();
+          hit = true;
           return;
         }
       });
     });
 
-    this.misses.push([letterCoordinate, numberCoordinate]);
-    // update DOM for miss
+    if (hit === false) {
+      this.misses.push([letterCoordinate, numberCoordinate]);
+    }
   }
 
   listShipLocations() {
-    return this.carrier.coordinates
-      .concat(this.battleship.coordinates)
-      .concat(this.cruiser.coordinates)
-      .concat(this.submarine.coordinates)
-      .concat(this.destroyer.coordinates);
+    let shipLocations = [];
+
+    this.listShipTypes().forEach((ship) => {
+      shipLocations = shipLocations.concat(this[ship].coordinates);
+    });
+
+    return shipLocations;
+  }
+
+  listGridCellsWithAssociatedShip() {
+    let shipLocations = [];
+
+    this.listShipTypes().forEach((ship) => {
+      const length = this[ship].ship.length;
+
+      for (let i = 0; i < length; i++) {
+        shipLocations.push([
+          [this[ship].coordinates[i][0] + this[ship].coordinates[i][1]],
+          ship,
+        ]);
+      }
+    });
+    return shipLocations;
   }
 
   listShipTypes() {
