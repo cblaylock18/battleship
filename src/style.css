@@ -140,15 +140,25 @@ body {
 .gameboard {
   display: grid;
   gap: 0px;
-  grid-template-columns: repeat(10, minmax(30px, 1fr));
-  grid-template-rows: repeat(10, minmax(30px, 1fr));
+  grid-template-columns: repeat(10, 32px);
+  grid-template-rows: repeat(10, 32px);
   justify-content: center;
 }
 
 .gametile {
-  min-width: 30px;
-  min-height: 30px;
+  width: 32px;
+  height: 32px;
   border: 1px solid black;
+  position: relative;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.carrier,
+.battleship,
+.cruiser,
+.submarine,
+.destroyer {
+  border: 1px solid grey;
 }
 
 .carrier {
@@ -171,18 +181,27 @@ body {
   background-color: rgba(206, 168, 0, 0.747);
 }
 
-.hit {
-  position: relative;
-}
-
 .hit::after {
-  content: "X";
-}
-
-.miss {
-  position: relative;
+  position: absolute;
+  content: "🎯";
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  pointer-events: none;
 }
 
 .miss::after {
-  content: "O";
+  position: absolute;
+  content: "⭕";
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  pointer-events: none;
+}
+
+.miss,
+.hit {
+  cursor: auto;
 }

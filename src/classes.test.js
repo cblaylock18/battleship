@@ -110,6 +110,12 @@ describe("gameboard class tests", () => {
         gameboard.placeShip("F", 3, "horizontal", "carrier");
       }).toThrow("ships cannot overlap");
     });
+
+    test("remove ship", () => {
+      gameboard.placeShip("F", 4, "horizontal", "cruiser");
+      gameboard.removeShip("cruiser");
+      expect(gameboard.cruiser.coordinates).toEqual([]);
+    });
   });
 
   describe("receiveAttack tests", () => {
@@ -173,11 +179,15 @@ describe("player class tests", () => {
 
   describe("player tests", () => {
     beforeEach(() => {
-      player = new Player();
+      player = new Player("playerOne", "AI");
     });
 
     test("player exists", () => {
       expect(player).toBeTruthy();
+    });
+
+    test("AI attacks", () => {
+      expect(player.AIAttack()).toBeTruthy();
     });
   });
 });
