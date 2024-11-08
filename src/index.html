@@ -6,8 +6,108 @@
     <title>Battleship</title>
   </head>
   <body>
+    <form>
+      <div>
+        <div>Carrier</div>
+        <select name="carrier-orientation" id="carrier-orientation">
+          <option value="horizontal">Horizontal</option>
+          <option value="vertical">Vertical</option>
+        </select>
+        <label for="carrier-coordinates">Coordinates</label>
+        <input
+          type="text"
+          id="carrier-coordinates"
+          name="carrier-coordinates"
+          title="a coordinate like 'A1' or 'J10'"
+          pattern="/^[A-J](10|[1-9])$/"
+          value="A1"
+          required
+        />
+      </div>
+      <div>
+        <div>Battleship</div>
+        <select name="battleship-orientation" id="battleship-orientation">
+          <option value="horizontal">Horizontal</option>
+          <option value="vertical">Vertical</option>
+        </select>
+        <label for="battleship-coordinates">Coordinates</label>
+        <input
+          type="text"
+          id="battleship-coordinates"
+          name="battleship-coordinates"
+          title="a coordinate like 'A1' or 'J10'"
+          pattern="/^[A-J](10|[1-9])$/"
+          value="B1"
+          required
+        />
+      </div>
+      <div>
+        <div>Cruiser</div>
+        <select name="cruiser-orientation" id="cruiser-orientation">
+          <option value="horizontal">Horizontal</option>
+          <option value="vertical">Vertical</option>
+        </select>
+        <label for="cruiser-coordinates">Coordinates</label>
+        <input
+          type="text"
+          id="cruiser-coordinates"
+          name="cruiser-coordinates"
+          title="a coordinate like 'A1' or 'J10'"
+          pattern="/^[A-J](10|[1-9])$/"
+          value="C1"
+          required
+        />
+      </div>
+      <div>
+        <div>Submarine</div>
+        <select name="submarine-orientation" id="submarine-orientation">
+          <option value="horizontal">Horizontal</option>
+          <option value="vertical">Vertical</option>
+        </select>
+        <label for="submarine-coordinates">Coordinates</label>
+        <input
+          type="text"
+          id="submarine-coordinates"
+          name="submarine-coordinates"
+          title="a coordinate like 'A1' or 'J10'"
+          pattern="/^[A-J](10|[1-9])$/"
+          value="D1"
+          required
+        />
+      </div>
+      <div>
+        <div>Destroyer</div>
+        <select name="destroyer-orientation" id="destroyer-orientation">
+          <option value="horizontal">Horizontal</option>
+          <option value="vertical">Vertical</option>
+        </select>
+        <label for="destroyer-coordinates">Coordinates</label>
+        <input
+          type="text"
+          id="destroyer-coordinates"
+          name="destroyer-coordinates"
+          title="a coordinate like 'A1' or 'J10'"
+          pattern="/^[A-J](10|[1-9])$/"
+          value="E1"
+          required
+        />
+      </div>
+      <input type="submit" value="Play!" />
+    </form>
     <div class="gameboards">
       <div class="gameboard playerOne">
+        <div></div>
+        <div class="column-number">1</div>
+        <div class="column-number">2</div>
+        <div class="column-number">3</div>
+        <div class="column-number">4</div>
+        <div class="column-number">5</div>
+        <div class="column-number">6</div>
+        <div class="column-number">7</div>
+        <div class="column-number">8</div>
+        <div class="column-number">9</div>
+        <div class="column-number">10</div>
+        <div class="row-letter">A</div>
         <div class="gametile" data-coordinate="A1"></div>
         <div class="gametile" data-coordinate="A2"></div>
         <div class="gametile" data-coordinate="A3"></div>
@@ -18,6 +118,8 @@
         <div class="gametile" data-coordinate="A8"></div>
         <div class="gametile" data-coordinate="A9"></div>
         <div class="gametile" data-coordinate="A10"></div>
+        <div class="row-letter">B</div>
+
         <div class="gametile" data-coordinate="B1"></div>
         <div class="gametile" data-coordinate="B2"></div>
         <div class="gametile" data-coordinate="B3"></div>
@@ -28,6 +130,8 @@
         <div class="gametile" data-coordinate="B8"></div>
         <div class="gametile" data-coordinate="B9"></div>
         <div class="gametile" data-coordinate="B10"></div>
+        <div class="row-letter">C</div>
+
         <div class="gametile" data-coordinate="C1"></div>
         <div class="gametile" data-coordinate="C2"></div>
         <div class="gametile" data-coordinate="C3"></div>
@@ -38,6 +142,8 @@
         <div class="gametile" data-coordinate="C8"></div>
         <div class="gametile" data-coordinate="C9"></div>
         <div class="gametile" data-coordinate="C10"></div>
+        <div class="row-letter">D</div>
+
         <div class="gametile" data-coordinate="D1"></div>
         <div class="gametile" data-coordinate="D2"></div>
         <div class="gametile" data-coordinate="D3"></div>
@@ -48,6 +154,8 @@
         <div class="gametile" data-coordinate="D8"></div>
         <div class="gametile" data-coordinate="D9"></div>
         <div class="gametile" data-coordinate="D10"></div>
+        <div class="row-letter">E</div>
+
         <div class="gametile" data-coordinate="E1"></div>
         <div class="gametile" data-coordinate="E2"></div>
         <div class="gametile" data-coordinate="E3"></div>
@@ -58,6 +166,8 @@
         <div class="gametile" data-coordinate="E8"></div>
         <div class="gametile" data-coordinate="E9"></div>
         <div class="gametile" data-coordinate="E10"></div>
+        <div class="row-letter">F</div>
+
         <div class="gametile" data-coordinate="F1"></div>
         <div class="gametile" data-coordinate="F2"></div>
         <div class="gametile" data-coordinate="F3"></div>
@@ -68,6 +178,8 @@
         <div class="gametile" data-coordinate="F8"></div>
         <div class="gametile" data-coordinate="F9"></div>
         <div class="gametile" data-coordinate="F10"></div>
+        <div class="row-letter">G</div>
+
         <div class="gametile" data-coordinate="G1"></div>
         <div class="gametile" data-coordinate="G2"></div>
         <div class="gametile" data-coordinate="G3"></div>
@@ -78,6 +190,8 @@
         <div class="gametile" data-coordinate="G8"></div>
         <div class="gametile" data-coordinate="G9"></div>
         <div class="gametile" data-coordinate="G10"></div>
+        <div class="row-letter">H</div>
+
         <div class="gametile" data-coordinate="H1"></div>
         <div class="gametile" data-coordinate="H2"></div>
         <div class="gametile" data-coordinate="H3"></div>
@@ -88,6 +202,8 @@
         <div class="gametile" data-coordinate="H8"></div>
         <div class="gametile" data-coordinate="H9"></div>
         <div class="gametile" data-coordinate="H10"></div>
+        <div class="row-letter">I</div>
+
         <div class="gametile" data-coordinate="I1"></div>
         <div class="gametile" data-coordinate="I2"></div>
         <div class="gametile" data-coordinate="I3"></div>
@@ -98,6 +214,8 @@
         <div class="gametile" data-coordinate="I8"></div>
         <div class="gametile" data-coordinate="I9"></div>
         <div class="gametile" data-coordinate="I10"></div>
+        <div class="row-letter">J</div>
+
         <div class="gametile" data-coordinate="J1"></div>
         <div class="gametile" data-coordinate="J2"></div>
         <div class="gametile" data-coordinate="J3"></div>
@@ -110,6 +228,19 @@
         <div class="gametile" data-coordinate="J10"></div>
       </div>
       <div class="gameboard playerTwo">
+        <div></div>
+
+        <div class="column-number">1</div>
+        <div class="column-number">2</div>
+        <div class="column-number">3</div>
+        <div class="column-number">4</div>
+        <div class="column-number">5</div>
+        <div class="column-number">6</div>
+        <div class="column-number">7</div>
+        <div class="column-number">8</div>
+        <div class="column-number">9</div>
+        <div class="column-number">10</div>
+        <div class="row-letter">A</div>
         <div class="gametile" data-coordinate="A1"></div>
         <div class="gametile" data-coordinate="A2"></div>
         <div class="gametile" data-coordinate="A3"></div>
@@ -120,6 +251,8 @@
         <div class="gametile" data-coordinate="A8"></div>
         <div class="gametile" data-coordinate="A9"></div>
         <div class="gametile" data-coordinate="A10"></div>
+        <div class="row-letter">B</div>
+
         <div class="gametile" data-coordinate="B1"></div>
         <div class="gametile" data-coordinate="B2"></div>
         <div class="gametile" data-coordinate="B3"></div>
@@ -130,6 +263,8 @@
         <div class="gametile" data-coordinate="B8"></div>
         <div class="gametile" data-coordinate="B9"></div>
         <div class="gametile" data-coordinate="B10"></div>
+        <div class="row-letter">C</div>
+
         <div class="gametile" data-coordinate="C1"></div>
         <div class="gametile" data-coordinate="C2"></div>
         <div class="gametile" data-coordinate="C3"></div>
@@ -140,6 +275,8 @@
         <div class="gametile" data-coordinate="C8"></div>
         <div class="gametile" data-coordinate="C9"></div>
         <div class="gametile" data-coordinate="C10"></div>
+        <div class="row-letter">D</div>
+
         <div class="gametile" data-coordinate="D1"></div>
         <div class="gametile" data-coordinate="D2"></div>
         <div class="gametile" data-coordinate="D3"></div>
@@ -150,6 +287,8 @@
         <div class="gametile" data-coordinate="D8"></div>
         <div class="gametile" data-coordinate="D9"></div>
         <div class="gametile" data-coordinate="D10"></div>
+        <div class="row-letter">E</div>
+
         <div class="gametile" data-coordinate="E1"></div>
         <div class="gametile" data-coordinate="E2"></div>
         <div class="gametile" data-coordinate="E3"></div>
@@ -160,6 +299,8 @@
         <div class="gametile" data-coordinate="E8"></div>
         <div class="gametile" data-coordinate="E9"></div>
         <div class="gametile" data-coordinate="E10"></div>
+        <div class="row-letter">F</div>
+
         <div class="gametile" data-coordinate="F1"></div>
         <div class="gametile" data-coordinate="F2"></div>
         <div class="gametile" data-coordinate="F3"></div>
@@ -170,6 +311,8 @@
         <div class="gametile" data-coordinate="F8"></div>
         <div class="gametile" data-coordinate="F9"></div>
         <div class="gametile" data-coordinate="F10"></div>
+        <div class="row-letter">G</div>
+
         <div class="gametile" data-coordinate="G1"></div>
         <div class="gametile" data-coordinate="G2"></div>
         <div class="gametile" data-coordinate="G3"></div>
@@ -180,6 +323,8 @@
         <div class="gametile" data-coordinate="G8"></div>
         <div class="gametile" data-coordinate="G9"></div>
         <div class="gametile" data-coordinate="G10"></div>
+        <div class="row-letter">H</div>
+
         <div class="gametile" data-coordinate="H1"></div>
         <div class="gametile" data-coordinate="H2"></div>
         <div class="gametile" data-coordinate="H3"></div>
@@ -190,6 +335,8 @@
         <div class="gametile" data-coordinate="H8"></div>
         <div class="gametile" data-coordinate="H9"></div>
         <div class="gametile" data-coordinate="H10"></div>
+        <div class="row-letter">I</div>
+
         <div class="gametile" data-coordinate="I1"></div>
         <div class="gametile" data-coordinate="I2"></div>
         <div class="gametile" data-coordinate="I3"></div>
@@ -200,6 +347,8 @@
         <div class="gametile" data-coordinate="I8"></div>
         <div class="gametile" data-coordinate="I9"></div>
         <div class="gametile" data-coordinate="I10"></div>
+        <div class="row-letter">J</div>
+
         <div class="gametile" data-coordinate="J1"></div>
         <div class="gametile" data-coordinate="J2"></div>
         <div class="gametile" data-coordinate="J3"></div>

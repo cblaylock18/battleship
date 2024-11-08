@@ -140,9 +140,16 @@ body {
 .gameboard {
   display: grid;
   gap: 0px;
-  grid-template-columns: repeat(10, 32px);
-  grid-template-rows: repeat(10, 32px);
+  grid-template-columns: repeat(11, 32px);
+  grid-template-rows: repeat(11, 32px);
   justify-content: center;
+}
+
+.column-number,
+.row-letter {
+  text-align: center;
+  font-size: 20px;
+  align-self: center;
 }
 
 .gametile {

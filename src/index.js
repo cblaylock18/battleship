@@ -17,6 +17,7 @@ playerTwo.gameboard.placeShip("F", 8, "vertical", "cruiser");
 playerTwo.gameboard.placeShip("H", 10, "vertical", "submarine");
 playerTwo.gameboard.placeShip("E", 1, "horizontal", "destroyer");
 
+// DOM.preGame()
 DOM.renderPlayerBoards(playerOne, playerTwo);
 
 // PC vs computer

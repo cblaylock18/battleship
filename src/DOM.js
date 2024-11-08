@@ -100,6 +100,13 @@ class DOM {
     return false;
   }
 
+  static preGame() {
+    // function that adds event listener and prevent default and all that to play button
+    // also maybe updates the player boards automatically as ship locations are chosen
+    // is that like a listen for change in select and coordinates???
+  }
+
+  //   helper functions for transforming coordinates as needed for use in data attributes
   static combineCoordinates(array) {
     let newArray = [];
     array.forEach((coordinatePair) => {
