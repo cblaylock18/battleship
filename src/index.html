@@ -6,7 +6,7 @@
     <title>Battleship</title>
   </head>
   <body>
-    <form>
+    <form id="player-one-form">
       <div>
         <div>Carrier</div>
         <select name="carrier-orientation" id="carrier-orientation">
@@ -19,10 +19,11 @@
           id="carrier-coordinates"
           name="carrier-coordinates"
           title="a coordinate like 'A1' or 'J10'"
-          pattern="/^[A-J](10|[1-9])$/"
+          pattern="^[A-J](10|[1-9])$"
           value="A1"
           required
         />
+        <span class="carrier-error-span error"></span>
       </div>
       <div>
         <div>Battleship</div>
@@ -36,10 +37,11 @@
           id="battleship-coordinates"
           name="battleship-coordinates"
           title="a coordinate like 'A1' or 'J10'"
-          pattern="/^[A-J](10|[1-9])$/"
+          pattern="^[A-J](10|[1-9])$"
           value="B1"
           required
         />
+        <span class="battleship-error-span error"></span>
       </div>
       <div>
         <div>Cruiser</div>
@@ -53,10 +55,11 @@
           id="cruiser-coordinates"
           name="cruiser-coordinates"
           title="a coordinate like 'A1' or 'J10'"
-          pattern="/^[A-J](10|[1-9])$/"
+          pattern="^[A-J](10|[1-9])$"
           value="C1"
           required
         />
+        <span class="cruiser-error-span error"></span>
       </div>
       <div>
         <div>Submarine</div>
@@ -70,10 +73,11 @@
           id="submarine-coordinates"
           name="submarine-coordinates"
           title="a coordinate like 'A1' or 'J10'"
-          pattern="/^[A-J](10|[1-9])$/"
+          pattern="^[A-J](10|[1-9])$"
           value="D1"
           required
         />
+        <span class="submarine-error-span error"></span>
       </div>
       <div>
         <div>Destroyer</div>
@@ -87,12 +91,14 @@
           id="destroyer-coordinates"
           name="destroyer-coordinates"
           title="a coordinate like 'A1' or 'J10'"
-          pattern="/^[A-J](10|[1-9])$/"
+          pattern="^[A-J](10|[1-9])$"
           value="E1"
           required
         />
+        <span class="destroyer-error-span error"></span>
       </div>
-      <input type="submit" value="Play!" />
+      <input type="submit" value="Play!" id="play-game-btn" />
+      <input type="reset" value="Reset" id="reset-game-btn" />
     </form>
     <div class="gameboards">
       <div class="gameboard playerOne">

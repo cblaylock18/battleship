@@ -80,19 +80,19 @@ describe("gameboard class tests", () => {
     test("place a destroyer at J10 vertically (should fail)", () => {
       expect(() => {
         gameboard.placeShip("J", 10, "vertical", "destroyer");
-      }).toThrow("ships must be placed entirely on the board");
+      }).toBe("ships must be placed entirely on the board");
     });
 
     test("place a destroyer at K(!)10 vertically (should fail)", () => {
       expect(() => {
         gameboard.placeShip("K", 10, "vertical", "destroyer");
-      }).toThrow("ships must be placed entirely on the board");
+      }).toBe("ships must be placed entirely on the board");
     });
 
     test("place a destroyer at A-10(!) vertically (should fail)", () => {
       expect(() => {
         gameboard.placeShip("A", -10, "vertical", "destroyer");
-      }).toThrow("ships must be placed entirely on the board");
+      }).toBe("ships must be placed entirely on the board");
     });
 
     test("place a cruiser at F4 horizontally", () => {
@@ -108,7 +108,7 @@ describe("gameboard class tests", () => {
       gameboard.placeShip("F", 4, "horizontal", "cruiser");
       expect(() => {
         gameboard.placeShip("F", 3, "horizontal", "carrier");
-      }).toThrow("ships cannot overlap");
+      }).toBe("ships cannot overlap");
     });
 
     test("remove ship", () => {

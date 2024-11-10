@@ -158,7 +158,6 @@ body {
   border: 1px solid black;
   position: relative;
   box-sizing: border-box;
-  cursor: pointer;
 }
 .carrier,
 .battleship,

@@ -61,12 +61,14 @@ class Gameboard {
   }
 
   placeShip(letterCoordinate, numberCoordinate, orientation, shipType) {
+    let error;
     const allowedLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
     const letterIndex = allowedLetters.indexOf(letterCoordinate);
 
     const shipLength = this[shipType].ship.length;
     let shipCoordinates = [];
     const existingCoordinates = this.listShipLocations();
+    let placeShip = true;
 
     if (
       (orientation === "horizontal" && shipLength + numberCoordinate > 11) ||
@@ -75,7 +77,8 @@ class Gameboard {
       numberCoordinate < 1 ||
       numberCoordinate > 10
     ) {
-      throw new Error("ships must be placed entirely on the board");
+      error = "ships must be placed entirely on the board";
+      placeShip = false;
     }
 
     for (let i = 0; i < shipLength; i++) {
@@ -95,16 +98,68 @@ class Gameboard {
           newCoordinate[0] === oldCoordinate[0] &&
           newCoordinate[1] === oldCoordinate[1]
         ) {
-          throw new Error("ships cannot overlap");
+          placeShip = false;
+          error = "ships cannot overlap";
         }
       });
     });
 
-    this[shipType].coordinates = shipCoordinates;
+    if (placeShip) {
+      this[shipType].coordinates = shipCoordinates;
+      return "placed";
+    } else return error;
+  }
+
+  randomizeShips() {
+    this.removeAllShips();
+    const shipTypes = this.listShipTypes();
+
+    shipTypes.forEach((ship) => {
+      let placed = false;
+      let attempts = 0;
+      const maxAttempts = 500;
+
+      let coordinates = {
+        horizontal: this.gameboardCoordinates(),
+        vertical: this.gameboardCoordinates(),
+      };
+
+      while (!placed && attempts <= maxAttempts) {
+        const orientation = Math.random() < 0.5 ? "horizontal" : "vertical";
+        const randomIndex = Math.floor(
+          Math.random() * coordinates[orientation].length,
+        );
+        const randomCoordinate = coordinates[orientation][randomIndex];
+
+        const shipPlacementWorked = this.placeShip(
+          randomCoordinate[0],
+          randomCoordinate[1],
+          orientation,
+          ship,
+        );
+        if (shipPlacementWorked !== "placed") {
+          coordinates[orientation].splice(randomIndex, 1);
+          // try again
+        } else {
+          placed = true;
+        }
+
+        attempts++;
+      }
+      console.log(this[ship].coordinates);
+    });
   }
 
   removeShip(ship) {
     this[ship].coordinates = [];
+  }
+
+  removeAllShips() {
+    const shipTypes = this.listShipTypes();
+
+    shipTypes.forEach((ship) => {
+      this.removeShip(ship);
+    });
   }
 
   receiveAttack(letterCoordinate, numberCoordinate) {
@@ -144,13 +199,19 @@ class Gameboard {
     let shipLocations = [];
 
     this.listShipTypes().forEach((ship) => {
+      if (this[ship].coordinates.length === 0) {
+      }
+
       const length = this[ship].ship.length;
 
       for (let i = 0; i < length; i++) {
-        shipLocations.push([
-          [this[ship].coordinates[i][0] + this[ship].coordinates[i][1]],
-          ship,
-        ]);
+        if (this[ship].coordinates.length === 0) {
+        } else {
+          shipLocations.push([
+            [this[ship].coordinates[i][0] + this[ship].coordinates[i][1]],
+            ship,
+          ]);
+        }
       }
     });
     return shipLocations;
@@ -173,9 +234,12 @@ class Gameboard {
     return placedShips;
   }
 
+  allShipsPlaced() {
+    return (this.placedShips = 5);
+  }
+
   allShipsSunk() {
     let numberOfSunkenShips = 0;
-    let numberOfPlacedShips = this.placedShips();
     const allShipTypes = this.listShipTypes();
 
     allShipTypes.forEach((shipType) => {
@@ -184,17 +248,12 @@ class Gameboard {
       }
     });
 
-    return numberOfSunkenShips === numberOfPlacedShips;
+    return numberOfSunkenShips === 5;
     // once game is fully implemented and players must start out with 5 ships, could reduce this logic to check if 5 ships are sunk
   }
-}
 
-class Player {
-  constructor(player, type) {
-    this.playerNumber = player;
-    this.type = type;
-    this.gameboard = new Gameboard();
-    this._placesToAttack = [
+  gameboardCoordinates() {
+    return [
       ["A", 1],
       ["A", 2],
       ["A", 3],
@@ -306,12 +365,26 @@ class Player {
       ["J", 10],
     ];
   }
+}
+
+class Player {
+  constructor(player, type) {
+    this.playerNumber = player;
+    this.type = type;
+    this.gameboard = new Gameboard();
+    this._placesToAttack = this.gameboard.gameboardCoordinates();
+  }
 
   AIAttack() {
     const randomIndex = Math.floor(Math.random() * this._placesToAttack.length);
     const randomCoordinate = this._placesToAttack[randomIndex];
     this._placesToAttack.splice(randomIndex, 1);
     return randomCoordinate;
+  }
+
+  reset() {
+    this.gameboard = new Gameboard();
+    this._placesToAttack = this.gameboard.gameboardCoordinates();
   }
 }
 
