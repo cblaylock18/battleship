@@ -56,7 +56,6 @@ class DOM {
     this.renderHits(playerOne);
     this.renderMisses(playerOne);
 
-
     this.renderHits(playerTwo);
     this.renderMisses(playerTwo);
     this.prepBoardForAttackClickEvents(playerOne, playerTwo);
@@ -157,7 +156,7 @@ class DOM {
             ship,
           );
           if (shipPlacementWorked !== "placed") {
-            errorSpan.textContent = `${ship} has an error. ${shipPlacementWorked}`;
+            errorSpan.textContent = `${ship.slice(0, 1).toUpperCase()}${ship.slice(1)} has an error. ${shipPlacementWorked}`;
             error = true;
           }
         });

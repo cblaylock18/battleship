@@ -124,6 +124,138 @@ table {
 
 body {
   background-color: bisque;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  font-size: 4rem;
+  padding: 1rem;
+  text-align: center;
+  font-weight: bolder;
+  position: relative;
+}
+
+header > span {
+  position: relative;
+  display: inline-block;
+}
+
+@keyframes oscillate {
+  from {
+    transform: translateX(-50%) scale(0);
+    opacity: 0.3;
+  }
+  to {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.8;
+  }
+}
+
+.explosion {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: oscillate 1.75s infinite alternate;
+  z-index: 1;
+}
+
+.form-container {
+  padding: 15px;
+  background-color: aquamarine;
+}
+
+.form-header {
+  font-size: 2rem;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 15px;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+form > div {
+  width: min-content;
+  display: grid;
+  padding: 4px;
+  gap: 10px;
+  grid-template-columns: repeat(4, min-content);
+  grid-template-rows: 1fr 20px;
+  place-items: center;
+}
+
+form > div > div {
+  font-weight: bold;
+  text-align: right;
+}
+
+select {
+  width: min-content;
+  justify-self: end;
+  font-size: 1rem;
+  padding: 4px;
+}
+
+label {
+  font-size: 1rem;
+  justify-self: end;
+}
+
+input[type="text"] {
+  padding: 4px;
+  width: 40px;
+  font-size: 1rem;
+  justify-self: end;
+}
+
+.error {
+  font-size: 16px;
+  color: red;
+  grid-area: 2 / 1 / 3 / 5;
+}
+
+.buttons {
+  width: 300px;
+  height: 68px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+#play-game-btn,
+#reset-game-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+  transition: background-color 0.3s ease;
+}
+
+#play-game-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+#play-game-btn:hover {
+  background-color: #45a049;
+}
+
+#reset-game-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+#reset-game-btn:hover {
+  background-color: #da190b;
 }
 
 .gameboards {

@@ -62,8 +62,9 @@ class Gameboard {
 
   placeShip(letterCoordinate, numberCoordinate, orientation, shipType) {
     let error;
+    const uppercaseLetterCoordinate = letterCoordinate.toUpperCase();
     const allowedLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
-    const letterIndex = allowedLetters.indexOf(letterCoordinate);
+    const letterIndex = allowedLetters.indexOf(uppercaseLetterCoordinate);
 
     const shipLength = this[shipType].ship.length;
     let shipCoordinates = [];
@@ -77,13 +78,13 @@ class Gameboard {
       numberCoordinate < 1 ||
       numberCoordinate > 10
     ) {
-      error = "ships must be placed entirely on the board";
+      error = "Ships must be placed entirely on the board.";
       placeShip = false;
     }
 
     for (let i = 0; i < shipLength; i++) {
       if (orientation === "horizontal") {
-        shipCoordinates.push([letterCoordinate, numberCoordinate + i]);
+        shipCoordinates.push([uppercaseLetterCoordinate, numberCoordinate + i]);
       } else if (orientation === "vertical") {
         shipCoordinates.push([
           allowedLetters[letterIndex + i],
@@ -99,7 +100,7 @@ class Gameboard {
           newCoordinate[1] === oldCoordinate[1]
         ) {
           placeShip = false;
-          error = "ships cannot overlap";
+          error = "Ships cannot overlap.";
         }
       });
     });
