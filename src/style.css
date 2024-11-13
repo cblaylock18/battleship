@@ -123,18 +123,18 @@ table {
 }
 
 body {
-  background-color: bisque;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: monospace;
   display: flex;
   flex-direction: column;
 }
 
 header {
+  background-image: linear-gradient(#052f5f, #005377);
+  color: white;
   font-size: 4rem;
   padding: 1rem;
   text-align: center;
   font-weight: bolder;
-  position: relative;
 }
 
 header > span {
@@ -164,12 +164,16 @@ header > span {
 
 .form-container {
   padding: 15px;
-  background-color: aquamarine;
+  background-image: linear-gradient(#0053773b, #f1a308b0);
 }
 
 .form-header {
   font-size: 2rem;
+  padding: 8px;
+  font-weight: bolder;
   text-align: center;
+  color: #740800;
+  text-decoration: underline;
 }
 
 form {
@@ -182,18 +186,43 @@ form {
 }
 
 form > div {
-  width: min-content;
+  flex: 0 1 440px;
   display: grid;
   padding: 4px;
   gap: 10px;
-  grid-template-columns: repeat(4, min-content);
-  grid-template-rows: 1fr 20px;
+  grid-template-rows: 1fr 1fr 20px;
   place-items: center;
+  padding-right: 10px;
+  border-right: 1px grey dotted;
+  border-bottom: 1px grey dotted;
+}
+
+.carrier-container {
+  color: rgba(0, 0, 0, 0.747);
+}
+
+.battleship-container {
+  color: rgba(0, 87, 4, 0.747);
+}
+
+.cruiser-container {
+  color: rgba(199, 0, 0, 0.747);
+}
+
+.submarine-container {
+  color: rgba(17, 0, 173, 0.747);
+}
+
+.destroyer-container {
+  color: rgba(126, 0, 119, 0.747);
 }
 
 form > div > div {
+  font-size: 1.8rem;
   font-weight: bold;
-  text-align: right;
+  text-align: left;
+  padding-right: 10px;
+  grid-area: 1 / 1 / 2 / 2;
 }
 
 select {
@@ -201,11 +230,14 @@ select {
   justify-self: end;
   font-size: 1rem;
   padding: 4px;
+  border-radius: 4px;
+  grid-area: 1 / 2 / 2 / 4;
 }
 
 label {
   font-size: 1rem;
   justify-self: end;
+  grid-area: 2 / 2 / 3 / 3;
 }
 
 input[type="text"] {
@@ -213,40 +245,44 @@ input[type="text"] {
   width: 40px;
   font-size: 1rem;
   justify-self: end;
+  border-radius: 4px;
+  grid-area: 2 / 3 / 3 / 4;
 }
 
 .error {
   font-size: 16px;
   color: red;
-  grid-area: 2 / 1 / 3 / 5;
+  grid-area: 3 / 1 / 4 / 4;
 }
 
 .buttons {
-  width: 300px;
-  height: 68px;
+  width: 400px;
+  height: min-content;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  border: none;
 }
 
 #play-game-btn,
 #reset-game-btn {
   padding: 10px 20px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 5px;
+  font-weight: bolder;
+  font-size: 2rem;
+  border: 1px black solid;
+  border-radius: 15px;
   cursor: pointer;
   margin: 5px;
   transition: background-color 0.3s ease;
 }
 
 #play-game-btn {
-  background-color: #4caf50;
+  background-color: #052f5f;
   color: white;
 }
 
 #play-game-btn:hover {
-  background-color: #45a049;
+  background-color: #005377;
 }
 
 #reset-game-btn {
@@ -256,6 +292,11 @@ input[type="text"] {
 
 #reset-game-btn:hover {
   background-color: #da190b;
+}
+
+#play-game-btn:active,
+#reset-game-btn:active {
+  transform: scale(0.95);
 }
 
 .gameboards {
@@ -275,6 +316,7 @@ input[type="text"] {
   grid-template-columns: repeat(11, 32px);
   grid-template-rows: repeat(11, 32px);
   justify-content: center;
+  margin-bottom: 24px;
 }
 
 .column-number,
@@ -290,7 +332,26 @@ input[type="text"] {
   border: 1px solid black;
   position: relative;
   box-sizing: border-box;
+  background-color: #06a77d;
 }
+
+@media only screen and (min-width: 768px) {
+  .gameboard {
+    grid-template-columns: repeat(11, 56px);
+    grid-template-rows: repeat(11, 56px);
+  }
+
+  .column-number,
+  .row-letter {
+    font-size: 30px;
+  }
+
+  .gametile {
+    width: 56px;
+    height: 56px;
+  }
+}
+
 .carrier,
 .battleship,
 .cruiser,
@@ -304,7 +365,7 @@ input[type="text"] {
 }
 
 .battleship {
-  background-color: rgba(0, 235, 12, 0.747);
+  background-color: rgba(0, 87, 4, 0.747);
 }
 
 .cruiser {
@@ -316,7 +377,7 @@ input[type="text"] {
 }
 
 .destroyer {
-  background-color: rgba(206, 168, 0, 0.747);
+  background-color: rgba(126, 0, 119, 0.747);
 }
 
 .hit::after {
