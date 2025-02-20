@@ -10,4 +10,5 @@ module.exports = {
     // "^react(.*)$": "<rootDir>/vendor/react-master$1",
     "^config$": "<rootDir>/configs/app-config.js",
   },
+  testEnvironment: "jest-environment-jsdom",
 };

@@ -97,7 +97,6 @@ class DOM {
 
   static computersTurn(humanPlayer, computerPlayer) {
     const computersAttackCoordinates = computerPlayer.AIAttack();
-
     humanPlayer.gameboard.receiveAttack(
       computersAttackCoordinates[0],
       computersAttackCoordinates[1] * 1,
@@ -108,7 +107,6 @@ class DOM {
       setTimeout(() => {
         alert("Better luck next time!");
       }, 0);
-      // clear board and reset game function #2/2
     }
   }
 

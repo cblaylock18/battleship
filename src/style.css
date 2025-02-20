@@ -122,10 +122,17 @@ table {
   border-spacing: 0;
 }
 
+:root {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
 body {
   font-family: monospace;
   display: flex;
   flex-direction: column;
+  max-width: 1500px;
 }
 
 header {
@@ -167,6 +174,12 @@ header > span {
   background-image: linear-gradient(#0053773b, #f1a308b0);
 }
 
+.instructions {
+  font-size: 1rem;
+  padding: 4px;
+  font-weight: bolder;
+}
+
 .form-header {
   font-size: 2rem;
   padding: 8px;
@@ -181,6 +194,7 @@ form {
   flex-wrap: wrap;
   gap: 15px;
   padding: 15px;
+  justify-content: center;
   align-items: center;
   font-size: 1.5rem;
 }
@@ -403,4 +417,13 @@ input[type="text"] {
 .miss,
 .hit {
   cursor: auto;
+}
+
+footer {
+  text-align: center;
+  margin-top: auto;
+  padding: 2rem;
+  font-size: 3rem;
+  color: white;
+  background-color: rgb(0, 0, 0);
 }

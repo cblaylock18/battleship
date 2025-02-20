@@ -30,14 +30,14 @@ describe("ship class tests", () => {
     expect(carrier.isSunk()).toBe(true);
   });
 
-  test("ship is NOT sunk after less hits than it's length", () => {
+  test("ship is NOT sunk after less hits than its length", () => {
     carrier.hit();
     carrier.hit();
     carrier.hit();
     expect(carrier.isSunk()).toBe(false);
   });
 
-  test("ship is  sunk after more hits than it's length", () => {
+  test("ship is sunk after more hits than its length", () => {
     carrier.hit();
     carrier.hit();
     carrier.hit();
@@ -55,6 +55,7 @@ describe("gameboard class tests", () => {
     beforeEach(() => {
       gameboard = new Gameboard();
     });
+
     test("place a carrier at A1 horizontally", () => {
       gameboard.placeShip("A", 1, "horizontal", "carrier");
       expect(gameboard.carrier.coordinates).toEqual([
@@ -78,21 +79,20 @@ describe("gameboard class tests", () => {
     });
 
     test("place a destroyer at J10 vertically (should fail)", () => {
-      expect(() => {
-        gameboard.placeShip("J", 10, "vertical", "destroyer");
-      }).toBe("ships must be placed entirely on the board");
+      let message = gameboard.placeShip("J", 10, "vertical", "destroyer");
+      expect(message).toBe("Ships must be placed entirely on the board.");
     });
 
     test("place a destroyer at K(!)10 vertically (should fail)", () => {
-      expect(() => {
-        gameboard.placeShip("K", 10, "vertical", "destroyer");
-      }).toBe("ships must be placed entirely on the board");
+      expect(gameboard.placeShip("K", 10, "vertical", "destroyer")).toBe(
+        "Ships must be placed entirely on the board.",
+      );
     });
 
     test("place a destroyer at A-10(!) vertically (should fail)", () => {
-      expect(() => {
-        gameboard.placeShip("A", -10, "vertical", "destroyer");
-      }).toBe("ships must be placed entirely on the board");
+      expect(gameboard.placeShip("A", -10, "vertical", "destroyer")).toBe(
+        "Ships must be placed entirely on the board.",
+      );
     });
 
     test("place a cruiser at F4 horizontally", () => {
@@ -106,9 +106,9 @@ describe("gameboard class tests", () => {
 
     test("don't allow overlapping ships", () => {
       gameboard.placeShip("F", 4, "horizontal", "cruiser");
-      expect(() => {
-        gameboard.placeShip("F", 3, "horizontal", "carrier");
-      }).toBe("ships cannot overlap");
+      expect(gameboard.placeShip("F", 3, "horizontal", "carrier")).toBe(
+        "Ships cannot overlap.",
+      );
     });
 
     test("remove ship", () => {
@@ -172,6 +172,61 @@ describe("gameboard class tests", () => {
       expect(gameboard.allShipsSunk()).toBeTruthy();
     });
   });
+
+  describe("miscellaneous gameboard methods", () => {
+    let gameboard;
+
+    beforeEach(() => {
+      gameboard = new Gameboard();
+    });
+
+    test("listShipTypes returns correct array", () => {
+      expect(gameboard.listShipTypes()).toEqual([
+        "carrier",
+        "battleship",
+        "cruiser",
+        "submarine",
+        "destroyer",
+      ]);
+    });
+
+    test("removeAllShips clears coordinates for all ships", () => {
+      gameboard.placeShip("A", 1, "horizontal", "carrier");
+      gameboard.placeShip("C", 3, "vertical", "cruiser");
+      expect(gameboard.placedShips()).toBe(2);
+      gameboard.removeAllShips();
+      gameboard.listShipTypes().forEach((shipType) => {
+        expect(gameboard[shipType].coordinates).toEqual([]);
+      });
+    });
+
+    test("placedShips returns the number of placed ships", () => {
+      expect(gameboard.placedShips()).toBe(0);
+      gameboard.placeShip("A", 1, "horizontal", "carrier");
+      gameboard.placeShip("C", 3, "vertical", "cruiser");
+      expect(gameboard.placedShips()).toBe(2);
+    });
+
+    test("listShipLocations returns all coordinates of placed ships", () => {
+      gameboard.placeShip("A", 1, "horizontal", "carrier");
+      gameboard.placeShip("F", 4, "horizontal", "cruiser");
+      expect(gameboard.listShipLocations()).toEqual([
+        ["A", 1],
+        ["A", 2],
+        ["A", 3],
+        ["A", 4],
+        ["A", 5],
+        ["F", 4],
+        ["F", 5],
+        ["F", 6],
+      ]);
+    });
+
+    test("randomizeShips places all ships", () => {
+      gameboard.randomizeShips();
+      expect(gameboard.placedShips()).toBe(5);
+    });
+  });
 });
 
 describe("player class tests", () => {
@@ -186,8 +241,12 @@ describe("player class tests", () => {
       expect(player).toBeTruthy();
     });
 
-    test("AI attacks", () => {
-      expect(player.AIAttack()).toBeTruthy();
+    test("AI attacks returns a valid coordinate", () => {
+      const attackCoord = player.AIAttack();
+      expect(attackCoord).toHaveLength(2);
+      // Check coordinate format: letter, number
+      expect(typeof attackCoord[0]).toBe("string");
+      expect(typeof attackCoord[1]).toBe("number");
     });
   });
 });
