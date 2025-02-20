@@ -25,7 +25,7 @@ A classic Battleship game built with vanilla JavaScript. This project was develo
 ## Live Demo
 **[View Demo on Github Pages (Here)](https://cblaylock18.github.io/battleship/)**  
 
-<img alt-"screenshot of project" src="https://github.com/user-attachments/assets/1c5709d2-3afc-4468-85f7-974d166a4150">
+<img alt="screenshot of project" src="https://github.com/user-attachments/assets/1c5709d2-3afc-4468-85f7-974d166a4150">
 
 ---
 
