@@ -1,6 +1,6 @@
 # Battleship Game
 
-A classic Battleship game built with vanilla JavaScript. This project was developed as part of [The Odin Project](https://www.theodinproject.com/) curriculum to practice core JavaScript fundamentals, DOM manipulation, and test-driven development (TDD) with Vitest.
+A classic Battleship game built with vanilla JavaScript. This project was developed as part of [The Odin Project](https://www.theodinproject.com/) curriculum to practice core JavaScript fundamentals, DOM manipulation, and test-driven development (TDD) with Jest.
 
 ## Table of Contents
 1. [Features](#features)
@@ -18,7 +18,7 @@ A classic Battleship game built with vanilla JavaScript. This project was develo
 - **Ship Placement & Hit Detection:** Players can place ships and record hits/misses with visual feedback.
 - **AI Opponent:** Implements a basic computer opponent that selects random coordinates for its moves.
 - **Win Condition Detection:** Automatically checks and declares a win once all ships are sunk.
-- **Test-Driven Development:** Uses Vitest for comprehensive testing of game logic and win conditions.
+- **Test-Driven Development:** Uses Jest for comprehensive testing of game logic and win conditions.
 
 ---
 
